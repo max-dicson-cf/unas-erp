@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+    <context:annotation-config/>
+    
+    <bean id="globalDao" class="com.max.oti.system.dao.hibernate.GlobalDao">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="userDao" class="com.max.oti.system.dao.hibernate.UserDao">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <!--
+    <bean id="systemUserDao" class="com.max.oti.system.dao.hibernate.SystemUserDao">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="userQuizDao" class="com.max.oti.system.dao.hibernate.UserQuizDao">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="qualifiedObjectDao" class="com.max.oti.system.dao.hibernate.QualifiedObjectDao">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    -->
+    <bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="org.postgresql.Driver" />
+        <property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/dbfiis" /> 
+        <property name="user" value="postgres" />
+        <property name="password" value="admin" />
+        <property name="maxPoolSize" value="20" />
+        <property name="maxStatements" value="20" />
+        <property name="initialPoolSize" value="10" />
+        <property name="minPoolSize" value="10" />
+        <property name="testConnectionOnCheckin" value="true" />
+    </bean>
+   
+    <!-- Session Factory Declaration -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="DataSource" />
+        <property name="annotatedClasses">
+            <list>
+                <value>com.max.oti.system.model.Access</value>
+                <value>com.max.oti.system.model.Activity</value>
+                <value>com.max.oti.system.model.Adviser</value>
+                <value>com.max.oti.system.model.Agreement</value>
+                <value>com.max.oti.system.model.AlumnRequirement</value>
+                <value>com.max.oti.system.model.Assistance</value>
+                <value>com.max.oti.system.model.Charge</value>
+                <value>com.max.oti.system.model.Comission</value>
+                <value>com.max.oti.system.model.Company</value>
+                <value>com.max.oti.system.model.Country</value>
+                <value>com.max.oti.system.model.Department</value>
+                <value>com.max.oti.system.model.Disctrict</value>
+                <value>com.max.oti.system.model.Function</value>
+                <value>com.max.oti.system.model.History</value>
+                <value>com.max.oti.system.model.Jury</value>
+                <value>com.max.oti.system.model.Member1</value>
+                <value>com.max.oti.system.model.Modality</value>
+                <value>com.max.oti.system.model.Practice</value>
+                <value>com.max.oti.system.model.Province</value>
+                <value>com.max.oti.system.model.Report</value>
+                <value>com.max.oti.system.model.Requirement</value>
+                <value>com.max.oti.system.model.Schedule</value>
+                <value>com.max.oti.system.model.Session</value>
+                <value>com.max.oti.system.model.State</value>
+                <value>com.max.oti.system.model.Supervision</value>
+                <value>com.max.oti.system.model.Sustentation</value>
+                <value>com.max.oti.system.model.TypeComission</value>
+                <value>com.max.oti.system.model.TypeUser</value>
+                <value>com.max.oti.system.model.User</value>
+                <value>com.max.oti.system.model.View</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hinernate.autoReconnect">true</prop>
+            </props>
+        </property>
+    </bean>
+ 
+    <tx:annotation-driven transaction-manager="txManager"/>
+ 
+    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean> 
+
+</beans>

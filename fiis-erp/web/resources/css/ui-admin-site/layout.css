@@ -1,0 +1,68 @@
+.header-container {
+    height: auto;
+    width: 100%;
+}
+
+.header-conatiner .right {
+    float: right;
+}
+
+.header-conatiner .left {
+    float: left; 
+}​​
+
+#wrap { min-height: 100%; }
+#main { overflow: auto; padding-bottom: 25px; text-align: center; }
+
+#footer { 
+    margin-top: -50px; 
+    /* altura en px del footer con valor negativo */ 
+    clear: both; 
+    text-align: center;  
+} 
+
+.layout-header {
+    border: none !important;
+    border-radius: 0 0 0 0 !important;
+    /* background: red !important;**/
+    overflow: hidden !important;
+}
+.layout-header .warp-content{
+    height: 100%;
+    width: 100%;
+}
+.layout-header *{
+    height: 100%;
+}
+.layout-header .left {
+    float: left; 
+    width: 25%; 
+    /*background-color:#0000ff;*/
+}
+.layout-header .right {
+    /*background-color: blue; */
+    float: right;
+}
+.layout-header .center {
+    float: left; 
+    width: 50%;  
+}
+.name-software {
+    text-shadow:3px 3px 5px rgba(204,102,255,1);
+    font-weight:normal;
+    text-decoration:underline;
+    font-style:italic;
+    color:#822C82;
+    letter-spacing:1pt;
+    word-spacing:5pt;
+    font-size:46px;
+    text-align:center;
+    font-family:comic sans, comic sans ms, cursive, verdana, arial, sans-serif;
+    line-height:1;
+    margin:0px;
+    padding:0px;
+}
+
+.ui-menubutton button {
+    height: 30px !important;
+}

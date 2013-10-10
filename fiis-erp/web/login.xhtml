@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <link type="text/css" rel="stylesheet"
+              href="#{request.contextPath}/resources/css/default.css" />
+        <link type="text/css" rel="stylesheet"
+              href="#{request.contextPath}/resources/css/syntaxhighlighter/syntaxhighlighter.css" />
+
+
+    </h:head>
+    <h:body onload="dialog.show();">
+        <p:dialog header="Indentificación" modal="true" widgetVar="dialog" closable="false" closeOnEscape="false">
+            <h:form>
+                <p:messages id="msgs" autoUpdate="true"/>
+                <div align="center">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Usuario:"/>
+                        <p:inputText value="#{loginBean.user.nick}" required="true" label="Usuario"/>
+
+                        <h:outputText value="Password"/>
+                        <p:password value="#{loginBean.user.password}" required="true" label="Password"/>
+
+                    </h:panelGrid>
+                    <p:separator />
+                    <div align="center">
+                        <p:selectOneRadio value="#{loginBean.idSelectedRadio}" >
+                            <f:selectItem itemValue="1" itemLabel="Comisión"/>
+                            <f:selectItem itemValue="2" itemLabel="Alumno"/>
+                        </p:selectOneRadio>
+                    </div>
+                    <p:separator />
+                    <p:commandButton value="Ingresar" icon="ui-icon-person"
+                                     action="#{loginBean.logginProcess}"/>
+                </div>
+            </h:form>
+        </p:dialog>
+
+    </h:body>
+</html>

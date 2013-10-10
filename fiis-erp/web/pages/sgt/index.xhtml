@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/ui-layout-template.xhtml">
+
+    <ui:define name="headerRightPosition">
+
+        <h:form>
+            <h:panelGrid columns="1">
+                <p:menuButton value="NombreUsuario" >
+                    <p:menuitem value="Perfil" icon="ui-icon-gear"/>
+                    <p:menuitem value="Cerrar Sesión" icon="ui-icon-closethick" action="#{indexLoginBean.logOut}"/>
+                </p:menuButton>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="headerLeftPosition">
+        <h:panelGrid columns="1">
+            Logo
+        </h:panelGrid>  
+    </ui:define>
+
+    <ui:define name="rigthPosition">
+        <h:form>
+            <div align="center">
+                <p:menu>
+                    <p:menuitem value="Principal" update=":panelCenter"
+                                onstart="PF('blockUI').block();" oncomplete="PF('blockUI').unblock();">
+                        <f:setPropertyActionListener value="./pages/sppp/home.xhtml" target="#{indexLoginBean.navigation}"/>
+                    </p:menuitem>
+                    
+                    <p:menuitem value="Encuesta" update=":panelCenter" 
+                                onstart="PF('blockUI').block();" oncomplete="PF('blockUI').unblock();">
+                        <f:setPropertyActionListener value="./pages/sppp/homedos.xhtml" target="#{indexLoginBean.navigation}"/>
+                    </p:menuitem>
+                </p:menu>
+            </div>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="centerPosition">
+        <p:panel id="panelCenter" style="border: none; height: 100%">
+            <ui:include src="#{indexLoginBean.navigation}"/>
+        </p:panel>
+    </ui:define>
+    
+    
+</ui:composition>
