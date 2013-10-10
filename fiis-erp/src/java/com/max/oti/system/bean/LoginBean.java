@@ -24,9 +24,7 @@ import org.omnifaces.util.Faces;
 @ManagedBean
 @ViewScoped
 public class LoginBean implements Serializable {
-//holaa
-    
-    //hola mundooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
     private Integer idSelectedRadio = 1;
     @ManagedProperty("#{globalService}")
     IGlobalService globalService;
